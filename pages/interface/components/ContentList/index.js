@@ -1,5 +1,5 @@
 // import useSWR from 'swr';
-import { Box, EmptyState, Link, PublishedSince, Text } from '@/TabNewsUI';
+import { Box, EmptyState, Link, PublishedSince, Text, BranchName } from '@/TabNewsUI';
 import { ChevronLeftIcon, ChevronRightIcon, CommentIcon } from '@primer/octicons-react';
 
 export default function ContentList({
@@ -73,7 +73,7 @@ export default function ContentList({
 
   function RenderItems() {
     function ChildrenDeepCountText({ count }) {
-      return count !== 1 ? `${count} comentários` : `${count} comentário`;
+      return ` ${count}`;
     }
 
     function TabCoinsText({ count }) {
@@ -120,8 +120,9 @@ export default function ContentList({
               <TabCoinsText count={contentObject.tabcoins} />
             </Text>
             {' · '}
+            <CommentIcon size={12} />
             <Text>
-              <ChildrenDeepCountText count={contentObject.children_deep_count} />
+              <ChildrenDeepCountText sx={{ display: ['flex', 'none'] }} count={contentObject.children_deep_count} />
             </Text>
             {' · '}
             <Link sx={{ color: 'neutral.emphasis' }} href={`/${contentObject.owner_username}`}>
